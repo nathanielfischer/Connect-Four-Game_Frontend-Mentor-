@@ -1,65 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <link rel="stylesheet" href="index.css">
   <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
-  
+
   <title>Frontend Mentor | Connect Four game</title>
 </head>
+
 <body>
 
   <!-- Main menu start -->
+  <div id="main-menu">
+    <img class="logo" src="assets/images/logo.svg" alt="Logo">
+    <button class="menu-btn">Play vs player</button>
+    <button class="menu-btn">Game rules</button>
+  </div>
 
-   Play vs player
-   Game rules
 
   <!-- Main menu end -->
 
   <!-- Rules start -->
 
-  Rules
+  <div id="rules-overlay">
+    Rules
 
-  Objective
+    Objective
 
-  Be the first player to connect 4 of the same colored discs in a row (either 
-  vertically, horizontally, or diagonally).
+    Be the first player to connect 4 of the same colored discs in a row (either
+    vertically, horizontally, or diagonally).
 
-  How to play
+    How to play
 
-  Red goes first in the first game.
-  Players must alternate turns, and only one disc can be dropped in each turn. 
-  The game ends when there is a 4-in-a-row or a stalemate.
-  The starter of the previous game goes second on the next game.
+    Red goes first in the first game.
+    Players must alternate turns, and only one disc can be dropped in each turn.
+    The game ends when there is a 4-in-a-row or a stalemate.
+    The starter of the previous game goes second on the next game.
+  </div>
+
 
   <!-- Rules end -->
 
   <!-- Ingame menu start -->
+  <div id="ingame-menu">
+    Pause
 
-  Pause
+    Continue game
+    Restart
+    Quit game
+  </div>
 
-  Continue game
-  Restart
-  Quit game
 
   <!-- Ingame menu end -->
-  
+
   <!-- Game board start -->
+  <div id="game-board">
+    Menu
+    Restart
 
-  Menu
-  Restart
+    Player 1
+    Player 2
 
-  Player 1
-  Player 2
+    Player 1's turn
+    Player 2's turn
 
-  Player 1's turn
-  Player 2's turn
+    Wins
+    Play again
+  </div>
 
-  Wins
-  Play again
 
   <!-- Game board end -->
 
 </body>
+
 </html>

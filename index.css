@@ -1,0 +1,44 @@
+
+body {
+    text-align: center;
+}
+
+
+
+
+
+/* Main menu (start menu) */
+
+#main-menu {
+    padding: 30%;
+}
+
+.logo {
+    margin-bottom: 3rem;
+}
+
+.menu-btn {
+    display: block;
+    margin: 1rem auto 0;
+}
+
+
+/* Rules overlay */
+
+#rules-overlay {
+    display: none;
+}
+
+
+/* Ingame menu */
+
+#ingame-menu {
+    display: none;
+}
+
+
+/* Game board */
+
+#game-board {
+    display: none;
+}
