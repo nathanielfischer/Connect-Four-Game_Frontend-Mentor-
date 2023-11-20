@@ -88,8 +88,14 @@ h4 {
 /* Rules overlay */
 
 #rules-overlay {
-    padding: 1rem;
-    margin-top: 3rem;
+    padding: 0 1rem;
+    height: calc(98vh - 2.3rem);
+}
+
+.rules-card {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
 }
 
 .grid-2 {
