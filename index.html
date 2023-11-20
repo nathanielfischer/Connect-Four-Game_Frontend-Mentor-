@@ -8,6 +8,11 @@
   <link rel="stylesheet" href="index.css">
   <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&display=swap"
+    rel="stylesheet">
+
   <title>Frontend Mentor | Connect Four game</title>
 </head>
 
@@ -16,29 +21,49 @@
   <!-- Main menu start -->
   <div id="main-menu">
     <img class="logo" src="assets/images/logo.svg" alt="Logo">
-    <button class="menu-btn">Play vs player</button>
-    <button class="menu-btn">Game rules</button>
-  </div>
+    <button class="btn-lg menu-btn icon-btn">
+      <h2>Play vs player</h2>
 
+      <img src="assets/images/player-vs-player.svg">
+    </button>
+
+    <button class="btn-lg menu-btn">
+      <h2>Game rules</h2>
+    </button>
+  </div>
 
   <!-- Main menu end -->
 
   <!-- Rules start -->
 
   <div id="rules-overlay">
-    Rules
+    <div class="card">
+      <h1>Rules</h1>
 
-    Objective
+      <h3>Objective</h3>
 
-    Be the first player to connect 4 of the same colored discs in a row (either
-    vertically, horizontally, or diagonally).
+      Be the first player to connect 4 of the same colored discs in a row (either
+      vertically, horizontally, or diagonally).
 
-    How to play
+      <h3>How to play</h3>
+      <div class="grid-2">
+        <h4>1</h4>
+        <span>Red goes first in the first game.</span>
+        <h4>2</h4>
+        Players must alternate turns, and only one disc can be dropped in each turn.
+        <h4>3</h4>
+        The game ends when there is a 4-in-a-row or a stalemate.
+        <h4>4</h4>
+        The starter of the previous game goes second on the next game.
+      </div>
 
-    Red goes first in the first game.
-    Players must alternate turns, and only one disc can be dropped in each turn.
-    The game ends when there is a 4-in-a-row or a stalemate.
-    The starter of the previous game goes second on the next game.
+      <div class="check">
+        <img class="btn-check" src="assets/images/icon-check.svg" alt="">
+      </div>
+
+
+
+    </div>
   </div>
 
 

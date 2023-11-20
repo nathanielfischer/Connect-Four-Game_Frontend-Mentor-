@@ -1,32 +1,117 @@
-
-body {
-    text-align: center;
+:root {
+    --yellow-color: #FFCE67;
+    --purple-color: #7945FF;
+    --dark-purple-color: #5C2DD5;
+    --red-color: #FD6687;
 }
 
 
+body {
+    background-color: var(--purple-color);
+    font-size: 16px;
+    font-family: "space-grotesk", sans-serif;
+    font-weight: 400;
+}
+
+h1,
+h2,
+h3,
+h4 {
+    text-transform: uppercase;
+}
+
+h1 {
+    font-size: 56px;
+    text-align: center;
+    margin: 1rem 0 2rem 0;
+}
+
+h2 {
+    font-size: 24px;
+}
+
+h3 {
+    font-size: 20px;
+    color: var(--purple-color);
+}
+
+h4 {
+    font-size: 16px;
+    margin: 0;
+}
+
+
+.btn-lg,
+.card {
+    border: 2px solid black;
+    border-radius: 1rem;
+    box-shadow: 0px 6px 0px;
+    background-color: white;
+}
+
+.card {
+    padding: 1rem;
+}
 
 
 
 /* Main menu (start menu) */
 
 #main-menu {
-    padding: 30%;
+    padding: 35% 2rem;
+    text-align: center;
+    /* temp */
+    display: none;
 }
 
 .logo {
-    margin-bottom: 3rem;
+    margin-bottom: 2.5rem;
 }
 
 .menu-btn {
     display: block;
     margin: 1rem auto 0;
+    width: 100%;
+    text-align: left;
+    padding: 0 1rem;
 }
+
+.icon-btn {
+    background-color: var(--yellow-color);
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
 
 
 /* Rules overlay */
 
 #rules-overlay {
-    display: none;
+    padding: 1rem;
+    margin-top: 3rem;
+}
+
+.grid-2 {
+    display: grid;
+    gap: 0.8rem;
+    grid-template-columns: 1rem 1fr;
+}
+
+.check {
+    height: 2rem;
+    margin-top: 0.5rem;
+}
+
+.btn-check {
+    position: relative;
+    top: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.btn-check:hover {
+    cursor: pointer;
 }
 
 
