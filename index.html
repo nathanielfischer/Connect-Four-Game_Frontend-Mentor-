@@ -21,13 +21,13 @@
   <!-- Main menu start -->
   <div id="main-menu">
     <img class="logo" src="assets/images/logo.svg" alt="Logo">
-    <button class="btn-lg menu-btn icon-btn">
+    <button class="btn-lg menu-btn icon-btn" id="menu-btn-play">
       <h2>Play vs player</h2>
 
       <img src="assets/images/player-vs-player.svg">
     </button>
 
-    <button class="btn-lg menu-btn">
+    <button class="btn-lg menu-btn" id="menu-btn-rules">
       <h2>Game rules</h2>
     </button>
   </div>
@@ -83,20 +83,120 @@
 
   <!-- Game board start -->
   <div id="game-board">
-    Menu
-    Restart
+    <div class="game-section">
+      <div class="top-section">
+        <button class="btn-xs">
+          <h4>Menu</h4>
+        </button>
+        <img class="ingame-logo" src="assets/images/logo.svg" alt="Logo">
+        <button class="btn-xs">
+          <h4>Restart</h4>
+        </button>
+      </div>
 
-    Player 1
-    Player 2
+      <div class="players-section">
+        <div class="card player-card">
+          <div class="container">
+            <img class="player1-icon" src="assets/images/player-one.svg" alt="">
+          </div>
+          <h4 class="player-heading">Player 1</h4>
+          <div class="player-score">0</div>
+        </div>
+        <div class="card player-card">
+          <div class="container">
+            <img class="player2-icon" src="assets/images/player-two.svg" alt="">
+          </div>
 
-    Player 1's turn
-    Player 2's turn
+          <h4 class="player-heading">Player 2</h4>
+          <div class="player-score">0</div>
+        </div>
+      </div>
 
-    Wins
-    Play again
+      <div class="board-section">
+
+        <img class="board-background" src="assets/images/board-layer-white-small.svg" alt="">
+        <img class="board-background" src="assets/images/board-layer-black-small.svg" alt="">
+        <!-- <img class="counter" src="assets/images/counter-red-small.svg" alt=""> -->
+        <div class="counter-grid">
+          <img id="00" class="counter" src="assets/images/counter-red-small.svg" alt="" style="opacity: 0;">
+          <img id="01" class="counter" src="assets/images/counter-red-small.svg" alt="" style="opacity: 0;">
+          <img id="02" class="counter" src="assets/images/counter-red-small.svg" alt="" style="opacity: 0;">
+          <img id="03" class="counter" src="assets/images/counter-red-small.svg" alt="" style="opacity: 0;">
+          <img id="04" class="counter" src="assets/images/counter-red-small.svg" alt="" style="opacity: 0;">
+          <img id="05" class="counter" src="assets/images/counter-red-small.svg" alt="" style="opacity: 0;">
+          <img id="06" class="counter" src="assets/images/counter-red-small.svg" alt="" style="opacity: 0;">
+
+          <img id="10" class="counter" src="assets/images/counter-red-small.svg" alt="" style="opacity: 0;">
+          <img id="11" class="counter" src="assets/images/counter-red-small.svg" alt="" style="opacity: 0;">
+          <img id="12" class="counter" src="assets/images/counter-red-small.svg" alt="" style="opacity: 0;">
+          <img id="13" class="counter" src="assets/images/counter-red-small.svg" alt="" style="opacity: 0;">
+          <img id="14" class="counter" src="assets/images/counter-red-small.svg" alt="" style="opacity: 0;">
+          <img id="15" class="counter" src="assets/images/counter-red-small.svg" alt="" style="opacity: 0;">
+          <img id="16" class="counter" src="assets/images/counter-red-small.svg" alt="" style="opacity: 0;">
+
+          <img id="20" class="counter" src="assets/images/counter-red-small.svg" alt="" style="opacity: 0;">
+          <img id="21" class="counter" src="assets/images/counter-red-small.svg" alt="" style="opacity: 0;">
+          <img id="22" class="counter" src="assets/images/counter-red-small.svg" alt="" style="opacity: 0;">
+          <img id="23" class="counter" src="assets/images/counter-red-small.svg" alt="" style="opacity: 0;">
+          <img id="24" class="counter" src="assets/images/counter-red-small.svg" alt="" style="opacity: 0;">
+          <img id="25" class="counter" src="assets/images/counter-red-small.svg" alt="" style="opacity: 0;">
+          <img id="26" class="counter" src="assets/images/counter-red-small.svg" alt="" style="opacity: 0;">
+
+          <img id="30" class="counter" src="assets/images/counter-red-small.svg" alt="" style="opacity: 0;">
+          <img id="31" class="counter" src="assets/images/counter-red-small.svg" alt="" style="opacity: 0;">
+          <img id="32" class="counter" src="assets/images/counter-red-small.svg" alt="" style="opacity: 0;">
+          <img id="33" class="counter" src="assets/images/counter-red-small.svg" alt="" style="opacity: 0;">
+          <img id="34" class="counter" src="assets/images/counter-red-small.svg" alt="" style="opacity: 0;">
+          <img id="35" class="counter" src="assets/images/counter-red-small.svg" alt="" style="opacity: 0;">
+          <img id="36" class="counter" src="assets/images/counter-red-small.svg" alt="" style="opacity: 0;">
+
+          <img id="40" class="counter" src="assets/images/counter-red-small.svg" alt="" style="opacity: 0;">
+          <img id="41" class="counter" src="assets/images/counter-red-small.svg" alt="" style="opacity: 0;">
+          <img id="42" class="counter" src="assets/images/counter-red-small.svg" alt="" style="opacity: 0;">
+          <img id="43" class="counter" src="assets/images/counter-red-small.svg" alt="" style="opacity: 0;">
+          <img id="44" class="counter" src="assets/images/counter-red-small.svg" alt="" style="opacity: 0;">
+          <img id="45" class="counter" src="assets/images/counter-red-small.svg" alt="" style="opacity: 0;">
+          <img id="46" class="counter" src="assets/images/counter-red-small.svg" alt="" style="opacity: 0;">
+
+          <img id="50" class="counter" src="assets/images/counter-red-small.svg" alt="" style="opacity: 0;">
+          <img id="51" class="counter" src="assets/images/counter-red-small.svg" alt="" style="opacity: 0;">
+          <img id="52" class="counter" src="assets/images/counter-red-small.svg" alt="" style="opacity: 0;">
+          <img id="53" class="counter" src="assets/images/counter-red-small.svg" alt="" style="opacity: 0;">
+          <img id="54" class="counter" src="assets/images/counter-red-small.svg" alt="" style="opacity: 0;">
+          <img id="55" class="counter" src="assets/images/counter-red-small.svg" alt="" style="opacity: 0;">
+          <img id="56" class="counter" src="assets/images/counter-red-small.svg" alt="" style="opacity: 0;">
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="timer-section">
+      <div class="timer-modal">
+        <img class="turn-bg" src="assets/images/turn-background-red.svg" alt="">
+        <span class="turn-fg">
+          <h4 id="players-turn">Player 1's turn</h4>
+          <h1 class="timer">30s</h1>
+        </span>
+      </div>
+
+      <div class="win-modal">
+        <div class="card">
+          <span>
+            <h4>Player 1</h4>
+            <h1 class="wins-heading">wins</h1>
+          </span>
+          <button class="btn-xs">PLAY AGAIN</button>
+        </div>
+
+      </div>
+
+    </div>
+
   </div>
 
-
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="index.js" charset="utf-8"></script>
   <!-- Game board end -->
 
 </body>

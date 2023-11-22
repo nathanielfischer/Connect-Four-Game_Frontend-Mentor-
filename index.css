@@ -9,8 +9,9 @@
 body {
     background-color: var(--purple-color);
     font-size: 16px;
-    font-family: "space-grotesk", sans-serif;
+    font-family: "space-grotesk";
     font-weight: 400;
+    margin: 0 !important;
 }
 
 h1,
@@ -49,6 +50,20 @@ h4 {
     background-color: white;
 }
 
+.btn-xs {
+    border: 0 !important;
+    border-radius: 1rem;
+    background-color: var(--dark-purple-color);
+    color: white;
+    padding: 0.5rem 0;
+    width: 7rem;
+}
+
+.btn-xs:hover,
+.btn-lg:hover {
+    cursor: pointer;
+}
+
 .card {
     padding: 1rem;
 }
@@ -58,10 +73,10 @@ h4 {
 /* Main menu (start menu) */
 
 #main-menu {
-    padding: 35% 2rem;
+    padding: 35% 1rem;
     text-align: center;
     /* temp */
-    display: none;
+    /* display: none; */
 }
 
 .logo {
@@ -90,6 +105,7 @@ h4 {
 #rules-overlay {
     padding: 0 1rem;
     height: calc(98vh - 2.3rem);
+    display: none;
 }
 
 .rules-card {
@@ -132,4 +148,141 @@ h4 {
 
 #game-board {
     display: none;
+}
+
+.game-section {
+    padding: 0 2rem;
+}
+
+.top-section,
+.players-section {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 2rem;
+    text-align: center;
+}
+
+.ingame-logo {
+    width: 3rem;
+}
+
+.players-section {
+    padding: 0 1rem;
+}
+
+.player-card {
+    width: 100%;
+    padding: 0;
+}
+
+.player-score {
+    font-size: 32px;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.player1-icon {
+    position: relative;
+    left: -50%;
+    top: 1rem;
+}
+
+.player2-icon {
+    position: relative;
+    right: -50%;
+    top: 1rem;
+}
+
+.player-heading {
+    margin: 1rem 0 0 0;
+}
+
+.container {
+    height: 0px;
+}
+
+.board-section {
+    margin-top: 2.5rem;
+}
+
+.board-background {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    pointer-events: none;
+}
+
+.board-background:nth-child(1) {
+    z-index: 50;
+}
+
+.board-background:nth-child(2) {
+    z-index: 0;
+}
+
+.counter-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    position: relative;
+    top: 5px;
+    height: 280px;
+    width: 326px;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-left: 2px;
+}
+
+.counter:hover {
+    cursor: pointer;
+}
+
+/* .timer-modal {
+    display: none;
+} */
+
+.timer-section {
+    background-color: var(--dark-purple-color);
+    height: 20rem;
+    position: relative;
+    top: 0.8rem;
+    border-radius: 4rem;
+}
+
+.turn-bg {
+    position: relative;
+    z-index: 60;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.turn-fg {
+    position: absolute;
+    z-index: 70;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 3rem;
+    color: white;
+}
+
+.timer {
+    margin: 5px 0 0 0;
+    text-transform: lowercase;
+}
+
+.win-modal {
+    width: 17rem;
+    z-index: 10;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 5px;
+    text-align: center;
+
+    display: none;
+}
+
+.wins-heading {
+    margin: 0;
 }
