@@ -141,7 +141,37 @@ h4 {
 
 #ingame-menu {
     display: none;
+    position: absolute;
+    z-index: 111;
+    left: 50%;
+    top: 50%;
+    transform: translate3d(-50%, -50%, 0);
+    width: 90%;
 }
+
+.ingame-menu-card {
+    background-color: var(--purple-color);
+}
+
+.ingame-menu-card h1 {
+    color: white;
+}
+
+.ingame-menu-btn {
+    width: 100%;
+    margin-bottom: 1rem;
+    padding: 0 1rem;
+}
+
+#ingame-btn-quit {
+    background-color: var(--red-color);
+    box-shadow: 0px 6px 0px black;
+    color: white;
+}
+
+/* .overlay {
+    background: rgba(0, 0, 0, 0.7)
+} */
 
 
 /* Game board */
@@ -273,7 +303,7 @@ h4 {
 
 .win-modal {
     width: 17rem;
-    z-index: 10;
+    z-index: 55;
     position: relative;
     left: 50%;
     transform: translateX(-50%);

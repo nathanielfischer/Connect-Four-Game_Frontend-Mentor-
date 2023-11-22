@@ -71,11 +71,13 @@
 
   <!-- Ingame menu start -->
   <div id="ingame-menu">
-    Pause
-
-    Continue game
-    Restart
-    Quit game
+    <div class="card ingame-menu-card">
+      <h1>Pause</h1>
+      <button class="btn-lg ingame-menu-btn" id="ingame-btn-continue"><h2>Continue game</h2></button>
+      <button class="btn-lg ingame-menu-btn" id="ingame-btn-restart"><h2>Restart</h2></button>
+      <button class="btn-lg ingame-menu-btn" id="ingame-btn-quit"><h2>Quit game</h2></button>
+    </div>
+    
   </div>
 
 
@@ -85,11 +87,11 @@
   <div id="game-board">
     <div class="game-section">
       <div class="top-section">
-        <button class="btn-xs">
+        <button class="btn-xs" id="back-to-menu">
           <h4>Menu</h4>
         </button>
         <img class="ingame-logo" src="assets/images/logo.svg" alt="Logo">
-        <button class="btn-xs">
+        <button class="btn-xs" id="restart">
           <h4>Restart</h4>
         </button>
       </div>
@@ -100,7 +102,7 @@
             <img class="player1-icon" src="assets/images/player-one.svg" alt="">
           </div>
           <h4 class="player-heading">Player 1</h4>
-          <div class="player-score">0</div>
+          <div class="player-score" id="player-one-score">0</div>
         </div>
         <div class="card player-card">
           <div class="container">
@@ -108,7 +110,7 @@
           </div>
 
           <h4 class="player-heading">Player 2</h4>
-          <div class="player-score">0</div>
+          <div class="player-score" id="player-two-score">0</div>
         </div>
       </div>
 
@@ -183,10 +185,10 @@
       <div class="win-modal">
         <div class="card">
           <span>
-            <h4>Player 1</h4>
+            <h4 id="player-won">Player 1</h4>
             <h1 class="wins-heading">wins</h1>
           </span>
-          <button class="btn-xs">PLAY AGAIN</button>
+          <button class="btn-xs" id="play-again">PLAY AGAIN</button>
         </div>
 
       </div>
