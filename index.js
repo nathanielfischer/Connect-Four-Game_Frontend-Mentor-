@@ -5,7 +5,17 @@ let currentTurnsPlayer = 1;
 let playerOneScore = 0;
 let playerTwoScore = 0;
 let pauseTimer = 0;
+let gameWonState = false; //set true if the won message is displayed
 
+//0 if no counter is set, 1 for player one counter, 2 for player two
+let gameTable = [
+    [0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0]
+];
 
 
 
@@ -30,15 +40,16 @@ $(".btn-check").click(function (event) {
     $("#main-menu").css("display", "block");
 });
 
-// Ingame -> pop up menu overlay
+// Ingame -> open pop up menu overlay
 $("#back-to-menu").click(function (event) {
     $("#ingame-menu").css("display", "block");
-    
+
     //stop timer and remember the current time in pauseTimer
     pauseTimer = timer;
     timer = 0;
 
-    //TODO: transparent background
+    //make background a bit transparent
+    $("#game-board").css("opacity", 0.5);
 });
 
 // Ingame -> restart game
@@ -57,6 +68,7 @@ $("#play-again").click(function (event) {
 // pop up menu -> continue game
 $("#ingame-btn-continue").click(function (event) {
     $("#ingame-menu").css("display", "none");
+    $("#game-board").css("opacity", 1);
 
     //continue timer
     timer = pauseTimer + 1;
@@ -69,6 +81,7 @@ $("#ingame-btn-restart").click(function (event) {
     clearTimeout(timerTimeout);
     resetGame();
     $("#ingame-menu").css("display", "none");
+    $("#game-board").css("opacity", 1);
 });
 
 // pop up menu -> quit game (back to main menu)
@@ -77,17 +90,18 @@ $("#ingame-btn-quit").click(function (event) {
     $("#ingame-menu").css("display", "none");
     $("#game-board").css("display", "none");
     $("#main-menu").css("display", "block");
+    $("#game-board").css("opacity", 1);
 });
 
 // ---------------------- Ingame listeners ----------------------
 
 //counter click listener
 $(".counter").click(function (event) {
-    const clickedField = '#' + event.target.id + '';
-
-    //TODO: check if clicked field is valid, then update
-    setCounter(clickedField);
-    nextTurn();
+    // if the win message is currently displayed, do nothing
+    if (gameWonState === false) {
+        const clickedField = event.target.id + '';
+        counterFall(clickedField);
+    }
 });
 
 
@@ -116,7 +130,7 @@ const setCounter = (clickedField) => {
     }
 }
 
-// updates the win score of the player who won & show win state
+// updates the win score of the player who won & shows win state 
 const updateScore = (playerWon) => {
     if (playerWon === 1) {
         playerOneScore += 1;
@@ -130,6 +144,7 @@ const updateScore = (playerWon) => {
 
 // hides the timer & shows the win state card
 const showWinState = (playerWon) => {
+    gameWonState = true;
     $(".timer-modal").css("display", "none");
     $(".win-modal").css("display", "block");
     $("#player-won")[0].innerHTML = "Player " + playerWon;
@@ -142,6 +157,8 @@ const hideWinState = () => {
     } else {
         currentTurnsPlayer = 1;
     }
+
+    gameWonState = false;
 
     //updates the interface
     updatePlayersTurn();
@@ -165,10 +182,20 @@ const updateFirstTurn = () => {
 }
 
 // for all counters: set opacity back to 0 (equals hide element)
+// reset the game table
 const resetCounters = () => {
     $('img', $('.counter-grid')).each(function () {
         $(this).attr("style", "opacity: 0");
     });
+
+    gameTable = [
+        [0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0]
+    ];
 }
 
 
@@ -187,13 +214,14 @@ const resetGame = () => {
     firstTurn = 1;
     playerOneScore = 0;
     playerTwoScore = 0;
+    gameWonState = false;
 
     $("#player-one-score")[0].innerHTML = playerOneScore;
     $("#player-two-score")[0].innerHTML = playerTwoScore;
 
     $(".win-modal").css("display", "none");
     $(".timer-modal").css("display", "block");
-    
+
     startGame();
 }
 
@@ -228,7 +256,6 @@ const timeIsUp = () => {
 
 // If a player won -> updates the score, ends timer, shows win state
 const gameOver = (playerWon) => {
-    //TODO: who won ???
     //TODO: mark the counters which made the player win -> timeIsUp ?!
 
     //stop timer
@@ -239,13 +266,59 @@ const gameOver = (playerWon) => {
 }
 
 
+//sets the counter to the correct field on the board & in the table array
+const counterFall = (clickedField) => {
+    const y = clickedField.substring(0, 1);
+    const x = clickedField.substring(1, 2)
+
+    for (let index = 5; index >= 0; index--) {
+        //check the y-axis from bottom to top if a field is empty
+        if (gameTable[index][x] === 0) {
+            setCounter("#" + index + x);
+            gameTable[index][x] = currentTurnsPlayer;
+            checkIfWon(x, index);
+            //TODO: Promise -> no next turn if someone won
+            nextTurn();
+            break;
+        }
+        //error message if collum is already full
+        if (index === 0) {
+            console.log("error");
+        }
+    }
+}
+
+//TODO: break even
+//checks if the current player has won the game
+// x and y are the coordinates of the last placed counter
+const checkIfWon = (x, y) => {
+    //if less than 4 counters are in a collumn, skip 
+    if (y < 3) {
+        let count = 0;
+
+        for (let index = y; index < 6; index++) {
+            if (gameTable[index][x] === currentTurnsPlayer) {
+                count++;
+            } else {
+                count = 0;
+            }
+            // if count is 4, the current player has won
+            if (count === 4) {
+                //TODO: return Promise player WON
+                updateScore(currentTurnsPlayer);
+            }
+        }
+    }
+}
+
+
 // ---------------------- Timer functions ----------------------
 
 /**
  * Updates the Timer every Second
  */
 const updateTimerEverySecond = () => {
-    const second = 1000; // 60000
+    const second = 1000;
 
     if (timer === 0) {
         //just stop the timer
