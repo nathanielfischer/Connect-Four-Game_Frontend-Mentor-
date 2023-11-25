@@ -148,6 +148,16 @@ const showWinState = (playerWon) => {
     $(".timer-modal").css("display", "none");
     $(".win-modal").css("display", "block");
     $("#player-won")[0].innerHTML = "Player " + playerWon;
+    $(".wins-heading")[0].innerHTML = "WINS";
+}
+
+// hides the timer & shows the win state card
+const showBreakEvenState = () => {
+    gameWonState = true;
+    $(".timer-modal").css("display", "none");
+    $(".win-modal").css("display", "block");
+    $("#player-won")[0].innerHTML = "BREAK";
+    $(".wins-heading")[0].innerHTML = "EVEN";
 }
 
 // hides the win state & shows the timer & sets next Player
@@ -265,6 +275,11 @@ const gameOver = (playerWon) => {
     updateScore(playerWon);
 }
 
+const breakEven = () => {
+    timer = 0;
+    showBreakEvenState();
+}
+
 
 //sets the counter to the correct field on the board & in the table array
 const counterFall = (clickedField) => {
@@ -276,9 +291,15 @@ const counterFall = (clickedField) => {
         if (gameTable[index][x] === 0) {
             setCounter("#" + index + x);
             gameTable[index][x] = currentTurnsPlayer;
-            checkIfWon(x, index);
-            //TODO: Promise -> no next turn if someone won
-            nextTurn();
+            checkIfWon(x, index).then(function (result) {
+                // resolve someone won -> end function
+                timer = 0;
+                updateScore(currentTurnsPlayer);
+                return;
+            }, function (err) {
+                // reject -> next turn;
+                nextTurn();
+            });
             break;
         }
         //error message if collum is already full
@@ -288,27 +309,137 @@ const counterFall = (clickedField) => {
     }
 }
 
-//TODO: break even
 //checks if the current player has won the game
 // x and y are the coordinates of the last placed counter
+// resolve if someone won, reject if not
 const checkIfWon = (x, y) => {
-    //if less than 4 counters are in a collumn, skip 
-    if (y < 3) {
+    return new Promise((resolve, reject) => {
         let count = 0;
+        x = Number(x);
+        y = Number(y);
 
-        for (let index = y; index < 6; index++) {
-            if (gameTable[index][x] === currentTurnsPlayer) {
-                count++;
-            } else {
+        //check if break even, if one player hit y = 0
+        if (y === 0) {
+            checkIfBreakEven().then(function (result) {
+                // resolve break even -> end function
+                //TODO: reject here?
+                console.log("break even");
+                return;
+            }, function (err) {
+                // reject -> do nothing
+            });
+        }
+
+        //check if 4 counters are next to each other horizontaly
+        if (x > 2) {
+            for (let index = 0; index < 4; index++) {
+                if (gameTable[y][x - index] === currentTurnsPlayer) {
+                    count++;
+                } else {
+                    count = 0;
+                }
+                // if count is 4, the current player has won
+                if (count === 4) {
+                    console.log("Won hor left");
+                    resolve();
+                    return;
+                }
+            }
+            count = 0;
+        }
+        if (x < 4) {
+            for (let index = 0; index < 4; index++) {
+                if (gameTable[y][x + index] === currentTurnsPlayer) {
+                    count++;
+                } else {
+                    count = 0;
+                }
+                // if count is 4, the current player has won
+                if (count === 4) {
+                    console.log("Won hor right");
+                    resolve();
+                    return;
+                }
+            }
+            count = 0;
+        }
+
+
+        //for vertical / diagonal check: if less than 4 counters are in a collumn, skip 
+        if (y < 3) {
+            // four counters vertically next to each other
+            for (let index = 0; index < 4; index++) {
+                if (gameTable[y + index][x] === currentTurnsPlayer) {
+                    count++;
+                } else {
+                    count = 0;
+                }
+                // if count is 4, the current player has won
+                if (count === 4) {
+                    console.log("Won vert");
+                    resolve();
+                    return;
+                }
+            }
+            count = 0;
+
+            // four counters diagonal to the right side
+            if (x < 4) {
+                for (let index = 0; index < 4; index++) {
+                    if (gameTable[y + index][x + index] === currentTurnsPlayer) {
+                        count++;
+                    } else {
+                        count = 0;
+                    }
+                    // if count is 4, the current player has won
+                    if (count === 4) {
+                        console.log("Won dia right");
+                        resolve();
+                        return;
+                    }
+                }
                 count = 0;
             }
-            // if count is 4, the current player has won
-            if (count === 4) {
-                //TODO: return Promise player WON
-                updateScore(currentTurnsPlayer);
+
+            // four counters diagonal to the left side
+            if (x > 2) {
+                for (let index = 0; index < 4; index++) {
+                    if (gameTable[y + index][x - index] === currentTurnsPlayer) {
+                        count++;
+                    } else {
+                        count = 0;
+                    }
+                    // if count is 4, the current player has won
+                    if (count === 4) {
+                        console.log("Won dia left");
+                        resolve();
+                        return;
+                    }
+                }
+            }
+
+        }
+        reject();
+    });
+}
+
+// checks if the game is break even, which means all fields are set
+const checkIfBreakEven = () => {
+    return new Promise((resolve, reject) => {
+        let count = 0;
+
+        // if there are any empty fields left, reject
+        for (let index = 0; index < 7; index++) {
+            if (gameTable[0][index] === 0) {
+                reject();
+                return;
             }
         }
-    }
+
+        // else trigger break even
+        breakEven();
+        resolve();
+    })
 }
 
 
