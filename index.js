@@ -298,7 +298,9 @@ const counterFall = (clickedField) => {
                 return;
             }, function (err) {
                 // reject -> next turn;
-                nextTurn();
+                if(err !== "break even"){
+                    nextTurn();
+                }
             });
             break;
         }
@@ -322,8 +324,8 @@ const checkIfWon = (x, y) => {
         if (y === 0) {
             checkIfBreakEven().then(function (result) {
                 // resolve break even -> end function
-                //TODO: reject here?
                 console.log("break even");
+                reject("break even");
                 return;
             }, function (err) {
                 // reject -> do nothing
