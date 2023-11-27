@@ -6,6 +6,7 @@ let playerOneScore = 0;
 let playerTwoScore = 0;
 let pauseTimer = 0;
 let gameWonState = false; //set true if the won message is displayed
+let windowSize = "small"; //"large" or "small"
 
 //0 if no counter is set, 1 for player one counter, 2 for player two
 let gameTable = [
@@ -17,6 +18,24 @@ let gameTable = [
     [0, 0, 0, 0, 0, 0, 0]
 ];
 
+
+// set the correct SVG size file onload
+window.onload = function () {
+    // if screen width is over 1200px 
+    if(document.body.clientWidth > 1200){
+        windowSize = "large";
+        changeCounterSvgSize();
+    }
+}
+
+
+
+// ---------------------- Window listeners ----------------------
+
+
+window.addEventListener("resize", function(event) {
+    //console.log(document.body.clientWidth + ' wide by ' + document.body.clientHeight+' high');
+})
 
 
 // ---------------------- Button listeners ----------------------
@@ -119,9 +138,9 @@ const updatePlayersTurn = () => {
 // Unhides the counter in the clicked field
 const setCounter = (clickedField) => {
     $(clickedField).attr("style", "opacity: 1");
-    //sets the color of the clicked counter
-    const red = "assets/images/counter-red-small.svg";
-    const yellow = "assets/images/counter-yellow-small.svg";
+    //sets the color of the clicked counter, size according to the window size
+    const red = "assets/images/counter-red-" + windowSize + ".svg";
+    const yellow = "assets/images/counter-yellow-" + windowSize + ".svg";
 
     if (currentTurnsPlayer === 1) {
         $(clickedField).attr("src", red);
@@ -206,6 +225,24 @@ const resetCounters = () => {
         [0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0]
     ];
+}
+
+const changeCounterSvgSize = () => {
+    // erste Zahl
+    for (let i = 0; i < 6; i++) {
+        //zweite Zahl
+        for (let z = 0; z < 7; z++) {
+            //console.log("#" + i + z);
+            let selector = "#" + i + z;
+            let originalSrc = $(selector).attr("src");
+            if(originalSrc.includes("red")){
+                $(selector).attr("src", "assets/images/counter-red-" + windowSize + ".svg");
+            }else {
+                $(selector).attr("src", "assets/images/counter-yellow-" + windowSize + ".svg");
+            }
+        }
+        
+    }
 }
 
 

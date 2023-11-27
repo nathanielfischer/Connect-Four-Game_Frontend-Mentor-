@@ -20,16 +20,18 @@
 
   <!-- Main menu start -->
   <div id="main-menu">
-    <img class="logo" src="assets/images/logo.svg" alt="Logo">
-    <button class="btn-lg menu-btn icon-btn" id="menu-btn-play">
-      <h2>Play vs player</h2>
+    <div class="card-lg menu-card-lg">
+      <img class="logo" src="assets/images/logo.svg" alt="Logo">
+      <button class="btn-lg menu-btn icon-btn" id="menu-btn-play">
+        <h2>Play vs player</h2>
 
-      <img src="assets/images/player-vs-player.svg">
-    </button>
+        <img src="assets/images/player-vs-player.svg">
+      </button>
 
-    <button class="btn-lg menu-btn" id="menu-btn-rules">
-      <h2>Game rules</h2>
-    </button>
+      <button class="btn-lg menu-btn" id="menu-btn-rules">
+        <h2>Game rules</h2>
+      </button>
+    </div>
   </div>
 
   <!-- Main menu end -->
@@ -73,11 +75,17 @@
   <div id="ingame-menu">
     <div class="card ingame-menu-card">
       <h1>Pause</h1>
-      <button class="btn-lg ingame-menu-btn" id="ingame-btn-continue"><h2>Continue game</h2></button>
-      <button class="btn-lg ingame-menu-btn" id="ingame-btn-restart"><h2>Restart</h2></button>
-      <button class="btn-lg ingame-menu-btn" id="ingame-btn-quit"><h2>Quit game</h2></button>
+      <button class="btn-lg ingame-menu-btn" id="ingame-btn-continue">
+        <h2>Continue game</h2>
+      </button>
+      <button class="btn-lg ingame-menu-btn" id="ingame-btn-restart">
+        <h2>Restart</h2>
+      </button>
+      <button class="btn-lg ingame-menu-btn" id="ingame-btn-quit">
+        <h2>Quit game</h2>
+      </button>
     </div>
-    
+
   </div>
 
 
@@ -115,9 +123,10 @@
       </div>
 
       <div class="board-section">
-
-        <img class="board-background" src="assets/images/board-layer-white-small.svg" alt="">
-        <img class="board-background" src="assets/images/board-layer-black-small.svg" alt="">
+        <img class="board-background-large bbl-w" src="assets/images/board-layer-white-large.svg" alt="">
+        <img class="board-background-large bbl-b" src="assets/images/board-layer-black-large.svg" alt="">
+        <img class="board-background-small bbs-w" src="assets/images/board-layer-white-small.svg" alt="">
+        <img class="board-background-small bbs-b" src="assets/images/board-layer-black-small.svg" alt="">
         <!-- <img class="counter" src="assets/images/counter-red-small.svg" alt=""> -->
         <div class="counter-grid">
           <img id="00" class="counter" src="assets/images/counter-red-small.svg" alt="" style="opacity: 0;">
