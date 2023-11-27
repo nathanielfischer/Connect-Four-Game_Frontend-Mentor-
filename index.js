@@ -19,7 +19,7 @@ let gameTable = [
 ];
 
 
-// set the correct SVG size file onload
+// set the correct SVG size file of the counter on window load
 window.onload = function () {
     // if screen width is over 1200px 
     if(document.body.clientWidth > 1200){

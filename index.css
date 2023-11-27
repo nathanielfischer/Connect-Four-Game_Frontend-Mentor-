@@ -243,6 +243,10 @@ h4 {
         margin: 2rem auto;
         width: 39.5rem;
     }
+
+    .players-section {
+        width: 36.2rem;
+    }
 }
 
 @media (min-width: 1200px) {
@@ -252,7 +256,7 @@ h4 {
 
     .players-section {
         height: 0;
-        width: 65rem;
+        width: 61rem;
         margin: 0 auto;
     }
 }
@@ -272,7 +276,7 @@ h4 {
 
 @media (min-width: 1200px) {
     .player-card {
-        width: 10rem;
+        width: 8rem;
         padding: 0;
         position: relative;
         top: 19.2rem;
@@ -299,6 +303,23 @@ h4 {
 
 .player-heading {
     margin: 1rem 0 0 0;
+}
+
+@media (min-width: 1200px) {
+    .player1-icon, .player2-icon {
+        position: relative;
+        top: -2rem;
+        right: 0;
+        left: 0;
+    }
+
+    .player-heading {
+        margin: 2.5rem 0 0 0;
+    }
+
+    .player-score {
+        font-size: 56px;
+    }
 }
 
 .container {
@@ -382,13 +403,6 @@ h4 {
     position: relative;
     top: 0.8rem;
     border-radius: 4rem 4rem 0 0;
-}
-
-@media (min-width: 576px) {
-
-    .timer-section {
-        top: 0;
-    }
 }
 
 .turn-bg {
