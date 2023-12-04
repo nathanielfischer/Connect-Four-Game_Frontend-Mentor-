@@ -79,7 +79,7 @@ h4 {
     /* display: none; */
 }
 
-@media (min-width: 576px) {
+@media (min-width: 720px) {
     #main-menu {
         background-color: var(--dark-purple-color);
         height: 100vh;
@@ -134,7 +134,7 @@ h4 {
     display: none;
 }
 
-@media (min-width: 576px) {
+@media (min-width: 720px) {
     .rules-card {
         width: 25rem;
         margin: 0 auto;
@@ -183,7 +183,7 @@ h4 {
     width: 90%;
 }
 
-@media (min-width: 576px) {
+@media (min-width: 720px) {
     .ingame-menu-card {
         width: 25rem;
         margin: 0 auto;
@@ -232,11 +232,16 @@ h4 {
     gap: 1rem;
     align-items: center;
     justify-content: space-between;
-    margin-top: 2rem;
     text-align: center;
+    width: 21rem;
+    margin: 2rem auto 0;
 }
 
-@media (min-width: 576px) {
+.players-section {
+    width: 17.8rem;
+}
+
+@media (min-width: 720px) {
 
     .top-section,
     .players-section {
@@ -330,13 +335,28 @@ h4 {
     margin-top: 2.5rem;
 }
 
-@media (max-width: 575.98px) {
+.marker {
+    position: absolute;
+    /* 5.5rem per counter */
+    left: calc(50%); 
+    transform: translateX(-50%);
+    z-index: 120;
+    top: 6rem;
+}
+
+@media (max-width: 1199.98px) {
+    .marker {
+        display: none;
+    }
+}
+
+@media (max-width: 721.98px) {
     .board-background-large {
         display: none;
     }
 }
 
-@media (min-width: 576px) {
+@media (min-width: 720px) {
     .board-background-small {
         display: none;
     }
@@ -372,7 +392,7 @@ h4 {
     margin-left: 2px;
 }
 
-@media (min-width: 576px) {
+@media (min-width: 720px) {
     .counter-grid {
         /* height: 552px;
         width: 617px;

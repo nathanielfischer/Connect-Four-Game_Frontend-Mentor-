@@ -6,7 +6,7 @@ let playerOneScore = 0;
 let playerTwoScore = 0;
 let pauseTimer = 0;
 let gameWonState = false; //set true if the won message is displayed
-let windowSize = "small"; //"large" or "small"
+let windowSize = "small"; //"large" or "small" board svg
 
 //0 if no counter is set, 1 for player one counter, 2 for player two
 let gameTable = [
@@ -21,8 +21,8 @@ let gameTable = [
 
 // set the correct SVG size file of the counter on window load
 window.onload = function () {
-    // if screen width is over 1200px 
-    if(document.body.clientWidth > 1200){
+    // if screen width on load is over 720px 
+    if (document.body.clientWidth > 720) {
         windowSize = "large";
         changeCounterSvgSize();
     }
@@ -33,9 +33,16 @@ window.onload = function () {
 // ---------------------- Window listeners ----------------------
 
 
-window.addEventListener("resize", function(event) {
-    //console.log(document.body.clientWidth + ' wide by ' + document.body.clientHeight+' high');
+window.addEventListener("resize", function (event) {
+    if (document.body.clientWidth > 720 && windowSize === "small") {
+        windowSize = "large";
+        changeCounterSvgSize();
+    } else if (document.body.clientWidth < 720 && windowSize === "large") {
+        windowSize = "small";
+        changeCounterSvgSize();
+    }
 })
+
 
 
 // ---------------------- Button listeners ----------------------
@@ -168,6 +175,11 @@ const showWinState = (playerWon) => {
     $(".win-modal").css("display", "block");
     $("#player-won")[0].innerHTML = "Player " + playerWon;
     $(".wins-heading")[0].innerHTML = "WINS";
+    if (playerWon === 1) {
+        $(".timer-section").css("background-color", "var(--red-color)");
+    } else { 
+        $(".timer-section").css("background-color", "var(--yellow-color)");
+    }
 }
 
 // hides the timer & shows the win state card
@@ -194,6 +206,7 @@ const hideWinState = () => {
 
     $(".win-modal").css("display", "none");
     $(".timer-modal").css("display", "block");
+    $(".timer-section").css("background-color", "var(--dark-purple-color)");
 }
 
 //updates the interface accordingly to who as the first turn 
@@ -235,16 +248,27 @@ const changeCounterSvgSize = () => {
             //console.log("#" + i + z);
             let selector = "#" + i + z;
             let originalSrc = $(selector).attr("src");
-            if(originalSrc.includes("red")){
+            if (originalSrc.includes("red")) {
                 $(selector).attr("src", "assets/images/counter-red-" + windowSize + ".svg");
-            }else {
+            } else {
                 $(selector).attr("src", "assets/images/counter-yellow-" + windowSize + ".svg");
             }
         }
-        
+
     }
 }
 
+const showMarker = (field) => {
+    $(".marker").css("display", "");
+    //calculates the offset in rem
+    const markerPosition = (field.substring(1, 2) - 3) * 5.5;
+    const markerPositionString = "calc(50% + " + markerPosition + "rem)";
+    $(".marker").css("left", markerPositionString);
+}
+
+const hideMarker = () => {
+    $(".marker").css("display", "none");
+}
 
 
 // ---------------------- Game logic ----------------------
@@ -268,6 +292,7 @@ const resetGame = () => {
 
     $(".win-modal").css("display", "none");
     $(".timer-modal").css("display", "block");
+    $(".timer-section").css("background-color", "var(--dark-purple-color)");
 
     startGame();
 }
@@ -335,7 +360,7 @@ const counterFall = (clickedField) => {
                 return;
             }, function (err) {
                 // reject -> next turn;
-                if(err !== "break even"){
+                if (err !== "break even") {
                     nextTurn();
                 }
             });
@@ -510,5 +535,13 @@ const updateTimerEverySecond = () => {
 }
 
 
+// ---------------------- Hover ----------------------
 
 
+$(".counter-grid > img").on("mouseover", function (data) {
+    showMarker(data.currentTarget.id);
+});
+
+$(".counter-grid > img").on("mouseout", function () {
+    hideMarker();
+});
