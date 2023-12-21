@@ -41,6 +41,7 @@ window.addEventListener("resize", function (event) {
         windowSize = "small";
         changeCounterSvgSize();
     }
+    changeTimerSectionBackgroundHeight();
 })
 
 
@@ -51,6 +52,7 @@ window.addEventListener("resize", function (event) {
 $("#menu-btn-play").click(function (event) {
     $("#main-menu").css("display", "none");
     $("#game-board").css("display", "block");
+    changeTimerSectionBackgroundHeight();
     resetGame();
 });
 
@@ -257,6 +259,21 @@ const changeCounterSvgSize = () => {
 
     }
 }
+
+// sets the height of the timer-section background dynamically to fit till the bottom of the screen
+const changeTimerSectionBackgroundHeight = () => {
+    //TODO: evalute beim button click
+    let gameSectionHeight = $(".game-section").height();
+    let timerSectionHeight = "calc( 100vh - 2rem - 0.8rem - " + gameSectionHeight + "px )";
+
+    // if content height is greater than viewport height, set no specific height
+    if((gameSectionHeight + 45 + $(".win-modal").height()) > $(window).height()){
+        timerSectionHeight = "";
+    }
+    
+    $(".timer-section").css("height", timerSectionHeight);
+}
+
 
 const showMarker = (field) => {
     $(".marker").css("display", "");

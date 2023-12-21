@@ -9,7 +9,7 @@
 body {
     background-color: var(--purple-color);
     font-size: 16px;
-    font-family: "space-grotesk";
+    font-family: space-grotesk, sans-serif;
     font-weight: 400;
     margin: 0 !important;
 }
@@ -38,6 +38,7 @@ h3 {
 
 h4 {
     font-size: 16px;
+    font-weight: 400;
     margin: 0;
 }
 
@@ -62,6 +63,15 @@ h4 {
 .btn-xs:hover,
 .btn-lg:hover {
     cursor: pointer;
+}
+
+.btn-lg:hover {
+    border: 2px solid var(--dark-purple-color);
+    box-shadow: 0px 6px 0px var(--dark-purple-color);
+}
+
+.btn-xs:hover {
+    background-color: var(--red-color);
 }
 
 .card {
@@ -307,11 +317,14 @@ h4 {
 }
 
 .player-heading {
+    font-weight: 700;
     margin: 1rem 0 0 0;
 }
 
 @media (min-width: 1200px) {
-    .player1-icon, .player2-icon {
+
+    .player1-icon,
+    .player2-icon {
         position: relative;
         top: -2rem;
         right: 0;
@@ -338,7 +351,7 @@ h4 {
 .marker {
     position: absolute;
     /* 5.5rem per counter */
-    left: calc(50%); 
+    left: calc(50%);
     transform: translateX(-50%);
     z-index: 120;
     top: 6rem;
@@ -419,7 +432,7 @@ h4 {
 
 .timer-section {
     background-color: var(--dark-purple-color);
-    height: 20rem;
+    /*height is set dynamically via JS function changeTimerSectionBackgroundHeight */
     position: relative;
     top: 0.8rem;
     border-radius: 4rem 4rem 0 0;
