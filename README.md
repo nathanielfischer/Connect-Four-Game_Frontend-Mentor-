@@ -19,10 +19,10 @@ This is a solution to the [Connect Four game challenge on Frontend Mentor](https
 
 Users should be able to:
 
-- View the game rules
-- Play a game of Connect Four against another human player (alternating turns on the same computer)
-- View the optimal layout for the interface depending on their device's screen size
-- See hover and focus states for all interactive elements on the page
+- ✔️ View the game rules
+- ✔️ Play a game of Connect Four against another human player (alternating turns on the same computer)
+- ✔️ View the optimal layout for the interface depending on their device's screen size
+- ✔️ See hover and focus states for all interactive elements on the page
 
 ### Screenshot
 
@@ -30,7 +30,7 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: [URL](https://nathanielfischer.github.io/Connect-Four-Game_Frontend-Mentor-/)
+- Solution URL: [GitHub Pages](https://nathanielfischer.github.io/Connect-Four-Game_Frontend-Mentor-/)
 
 ## My process
 
@@ -44,7 +44,7 @@ Users should be able to:
 ### What I learned
 
 - Better understanding of using SVGs
-- How to change the DOM with jQuery when the window is resized
+- How to change the website layout with jQuery when the window is resized
 
 ## Author
 
